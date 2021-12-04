@@ -3,7 +3,7 @@ import Square from './Square';
 
 const Board = () => {
   const [board, setBoard] = useState(Array(9).fill(null));
-  const [isXNext, setisNext] = useState(false);
+  const [isXNext, setisXNext] = useState(false);
 
   const handleSquareclick = position => {
     if (board[position]) {
@@ -18,7 +18,7 @@ const Board = () => {
         return square;
       });
     });
-    setisNext(prev => !prev);
+    setisXNext(prev => !prev);
   };
   const renderSquare = position => {
     return (
