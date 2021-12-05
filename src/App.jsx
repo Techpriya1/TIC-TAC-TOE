@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Board from './components/Board';
-import History from './components/History';
-
+import Statusmsg from './components/Statusmsg';
 import { calculateWinner } from './helpers';
 import './styles/root.scss';
 
@@ -9,15 +8,11 @@ const App = () => {
   const [history, setHistory] = useState([
     { board: Array(9).fill(null), isXNext: true },
   ]);
-  const [currentMove, setcurrentMove] = useState(0);
+  const [currentMove, setCurrentMove] = useState(0);
   const current = history[currentMove];
 
   const [isXNext, setisXNext] = useState(false);
   const winner = calculateWinner(current.board);
-
-  const message = winner
-    ? `Winner is ${winner}`
-    : `Next player is ${current.isXNext ? 'X' : 'O'}`;
 
   const handleSquareclick = position => {
     if (current.board[position] || winner) {
@@ -37,16 +32,16 @@ const App = () => {
       return prev.concat({ board: newBoard, isXNext: !last.isXNext });
     });
 
-    setcurrentMove(prev => prev + 1);
+    setCurrentMove(prev => prev + 1);
   };
   const moveTo = moveTo => {
-    setcurrentMove(move);
+    setCurrentMove(move);
   };
 
   return (
     <div className="app">
       <h1>TIC TAC TOE</h1>
-      <h2>{message}</h2>
+      <Statusmsg />
       <Board board={current.board} handleSquareclick={handleSquareclick} />
       <History history={history} moveT0={moveTo} currentMOve={currentMove} />
     </div>

@@ -13,7 +13,7 @@ const Board = () => {
     setBoard(prev => {
       return prev.map((square, pos) => {
         if (pos === position) {
-          return isXNext ? 'X' : `O`;
+          return isXNext ? 'X' : 'O';
         }
         return square;
       });
