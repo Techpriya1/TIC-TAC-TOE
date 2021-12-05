@@ -33,7 +33,7 @@ const App = () => {
 
     setCurrentMove(prev => prev + 1);
   };
-  const moveTo = moveTo => {
+  const moveTo = move => {
     setCurrentMove(move);
   };
 
@@ -44,17 +44,26 @@ const App = () => {
 
   return (
     <div className="app">
-      <h1>TIC TAC TOE</h1>
-      <Statusmsg />
+      <h1>
+        TIC <span className="text-green">TAC </span> TOE
+      </h1>
+      <Statusmsg winner={winner} current={current} />
       <Board
         board={current.board}
         handleSquareclick={handleSquareclick}
         winningSquares={winningSquares}
       />
-      <button type="button" onClick={onNewGame}>
+      <button
+        type="button"
+        onClick={onNewGame}
+        className={`btn-reset ${winner ? 'active' : ''}`}
+      >
         Start New Game
       </button>
+      <h2 style={{ fontWeight: 'normal' }}> Current Game HIstory</h2>
+
       <History history={history} moveT0={moveTo} currentMOve={currentMove} />
+      <div className="bg-balls" />
     </div>
   );
 };

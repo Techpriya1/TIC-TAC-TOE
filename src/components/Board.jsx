@@ -3,7 +3,7 @@ import Square from './Square';
 
 const Board = ({ board, handleSquareclick, winningSquares }) => {
   const renderSquare = position => {
-    const isWinningSquare = winningSquares.include(position);
+    const isWinningSquare = winningSquares.includes(position);
     return (
       <Square
         value={board[position]}
